@@ -1,0 +1,6 @@
+# configs/hardware/ddp.yaml
+
+trainer:
+  accelerator: gpu
+  devices: 2
+  strategy: ddp

@@ -1,0 +1,6 @@
+# configs/hardware/gpu.yaml
+
+trainer:
+  accelerator: gpu
+  devices: 1
+  strategy: auto

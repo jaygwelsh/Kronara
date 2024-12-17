@@ -1,0 +1,45 @@
+defaults:
+  - _self_
+  - hardware/gpu.yaml
+  - optimization/mixed_precision.yaml
+
+hydra:
+  run:
+    dir: .
+
+trainer:
+  max_epochs: 30
+  accelerator: gpu
+  devices: 1
+  enable_checkpointing: true
+  log_every_n_steps: 500
+  precision: 16-mixed
+  strategy: auto
+  accumulate_grad_batches: 1
+  gradient_clip_val: 1.0
+  early_stopping_patience: 5
+
+data:
+  path: ""                # If empty, fallback_to_synthetic must be true
+  num_samples: 1000000
+  num_features: 200
+  test_size: 0.2
+  k_folds: 5
+  current_fold: 0
+  seed: 42
+  batch_size: 1024
+  num_workers: 8
+  persistent_workers: true
+  fallback_to_synthetic: true
+
+model:
+  input_dim: ${data.num_features}
+  hidden_layers: [4096, 4096, 4096, 4096]
+  output_dim: 1
+  lr: 0.0005          # Reduced LR for more stable convergence
+  weight_decay: 1e-5
+  dropout: 0.1
+
+logging:
+  mlflow_experiment_name: "Kronara_Production_Run"
+  mlflow_tracking_uri: "file:./mlruns"

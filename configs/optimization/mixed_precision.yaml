@@ -1,0 +1,4 @@
+# configs/optimization/mixed_precision.yaml
+
+trainer:
+  precision: 16-mixed

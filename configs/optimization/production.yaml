@@ -1,0 +1,13 @@
+# Production override configuration
+defaults:
+  - _self_
+  - hardware/ddp.yaml  # Example: Use distributed training in production
+
+data:
+  path: "/path/to/your/real_data.parquet"
+  fallback_to_synthetic: false
+
+trainer:
+  max_epochs: 50
+  precision: 16-mixed
+  log_every_n_steps: 100

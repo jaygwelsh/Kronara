@@ -1,0 +1,7 @@
+# configs/optimization/tune.yaml
+
+tune:
+  n_trials: 20
+  lr_range: [1e-4, 1e-2]
+  hidden_dim_range: [64, 512]
+  batch_size_choices: [32, 64, 128, 256]
